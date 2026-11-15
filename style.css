@@ -183,6 +183,7 @@ ul { list-style: none; }
 }
 .nav-links a:hover { opacity: 1; text-decoration: underline; text-decoration-color: var(--lime-dark); text-underline-offset: 6px; text-decoration-thickness: 2px; }
 .nav-right { display: flex; align-items: center; gap: 14px; }
+.nav-cta { display: none; } /* telefon menyusidagi Telegram tugmasi */
 .theme-toggle, .menu-toggle {
   width: 46px;
   height: 46px;
@@ -577,6 +578,10 @@ ul { list-style: none; }
   .skills-head { flex-direction: column; align-items: flex-start; gap: 20px; }
   .skills-side { text-align: left; }
   .grid { grid-template-columns: 1fr 1fr; }
+  /* Telefon: ijtimoiy belgilarni bosish oson bo'lsin (44px) */
+  .socials { gap: 4px; }
+  .socials a { width: 44px; height: 44px; display: grid; place-items: center; }
+  .socials svg { width: 22px; height: 22px; }
 }
 @media (max-width: 600px) {
   .container { padding-left: 16px; padding-right: 16px; }
@@ -595,6 +600,25 @@ ul { list-style: none; }
   .faq-item summary { padding: 18px 20px; font-size: 15px; }
   .faq-item p { padding: 0 20px 20px; }
   .footer { justify-content: center; text-align: center; }
+
+  /* Telefon menyusida Telegram tugmasi */
+  .nav-bar.menu-open .nav-links a.nav-cta {
+    display: inline-flex;
+    align-self: flex-start;
+    margin: 14px 0 6px;
+    padding: 7px 20px 7px 7px;
+    font-size: 15px;
+    border-bottom: 0;
+    opacity: 1;
+    text-decoration: none;
+  }
+  /* Hero: tugma va havola tartibli ustma-ust */
+  .or { display: none; }
+  .hero-actions { flex-direction: column; align-items: flex-start; gap: 8px; }
+  .hero-actions .link-arrow { min-height: 44px; }
+  /* Barmoq bilan bosish uchun kamida 44px */
+  .arrow { width: 60px; height: 44px; }
+  .footer a { display: inline-block; padding: 14px 8px; margin: -14px 0; }
 }
 /* ===== JONLANISH (yengil va tez) ===== */
 @keyframes rise {
