@@ -15,17 +15,19 @@
 <body>
   <div class="page">
 
-    <!-- NAV -->
-    <header class="nav container">
+    <!-- NAV (yopishqoq) -->
+    <header class="nav-bar" id="nav-bar">
+     <div class="nav container">
       <a class="logo" href="#hero">
         Azizbek
         <svg class="logo-mark" viewBox="0 0 24 12" aria-hidden="true"><path d="M6 0l6 6-6 6-6-6z"/><path d="M18 2l4 4-4 4-4-4z" opacity=".6"/></svg>
       </a>
-      <nav class="nav-links">
-        <a href="#hero">Bosh sahifa</a>
+      <nav class="nav-links" id="nav-links" aria-label="Asosiy menyu">
         <a href="#skills">Ko'nikmalar</a>
         <a href="#xizmatlar">Xizmatlar</a>
-        <a href="#loyihalar">Loyihalar</a>
+        <a href="#ishlarim">Ishlarim</a>
+        <a href="#fikrlar">Fikrlar</a>
+        <a href="#savollar">Savollar</a>
         <a href="#aloqa">Aloqa</a>
       </nav>
       <div class="nav-right">
@@ -39,7 +41,12 @@
           </span>
           Telegram'da yozish
         </a>
+        <button class="menu-toggle" id="menu-toggle" type="button" aria-label="Menyuni ochish" aria-expanded="false" aria-controls="nav-links">
+          <svg class="ico-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+          <svg class="ico-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
+        </button>
       </div>
+     </div>
     </header>
 
     <main>
@@ -77,8 +84,8 @@
                   Bog'lanish
                 </a>
                 <span class="or">yoki</span>
-                <a class="link-arrow" href="#loyihalar">
-                  Loyihalarni ko'rish
+                <a class="link-arrow" href="#ishlarim">
+                  Ishlarimni ko'rish
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
                 </a>
               </div>
@@ -179,23 +186,21 @@
         </div>
       </section>
 
-      <!-- LOYIHALARIM -->
-      <section id="loyihalar" class="section container">
+      <!-- ISHLARIM -->
+      <section id="ishlarim" class="section container">
         <div class="section-head">
-          <span class="pill">Loyihalar</span>
+          <span class="pill">Ishlarim</span>
           <h2 class="title">So'nggi <span class="hl">ishlarim</span></h2>
         </div>
         <div class="grid">
-          <!-- Har bir loyiha uchun nom, tavsif, teglar va havolani o'zingiznikiga almashtiring -->
+          <!-- Rasm qo'yish: images/ papkasiga rasm tashlang va <span> o'rniga
+               <img src="images/rasm.jpg" alt="Loyiha nomi"> yozing.
+               Nom va izohni o'zingizning haqiqiy loyihangizga almashtiring. -->
           <article class="card project">
             <div class="project-cover"><span>Landing</span></div>
             <div class="project-body">
               <h3>Onlayn do'kon landing sahifasi</h3>
               <p>Mahsulotlar katalogi va buyurtma formasi bilan bir sahifali sayt.</p>
-              <ul class="chips"><li>HTML</li><li>CSS</li><li>JavaScript</li></ul>
-              <a class="link-arrow" href="#">Ko'rish
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
-              </a>
             </div>
           </article>
           <article class="card project">
@@ -203,10 +208,6 @@
             <div class="project-body">
               <h3>Savdo bo'limi uchun CRM</h3>
               <p>Mijozlar bazasi, bitimlar holati va hisobotlar paneli.</p>
-              <ul class="chips"><li>React</li><li>Node.js</li><li>PostgreSQL</li></ul>
-              <a class="link-arrow" href="#">Ko'rish
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
-              </a>
             </div>
           </article>
           <article class="card project">
@@ -214,12 +215,62 @@
             <div class="project-body">
               <h3>Buyurtma qabul qiluvchi bot</h3>
               <p>Kafe uchun menyu, savatcha va adminga xabar yuboruvchi Telegram bot.</p>
-              <ul class="chips"><li>Python</li><li>Aiogram</li></ul>
-              <a class="link-arrow" href="#">Ko'rish
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
-              </a>
             </div>
           </article>
+        </div>
+      </section>
+
+      <!-- MIJOZLAR FIKRI -->
+      <section id="fikrlar" class="section container">
+        <div class="section-head">
+          <span class="pill">Fikrlar</span>
+          <h2 class="title">Mijozlar <span class="hl">fikri</span></h2>
+        </div>
+        <!-- NAMUNA MATN: haqiqiy mijozlaringiz sharhlarini (ularning roziligi bilan)
+             yozmaguningizcha saytni internetga chiqarmang. -->
+        <div class="grid">
+          <figure class="card review">
+            <div class="icon quote" aria-hidden="true">&ldquo;</div>
+            <blockquote><p>Mijoz sharhi shu yerga yoziladi: qanday vazifa bo'lgan va natija qanday bo'ldi.</p></blockquote>
+            <figcaption><strong>Mijoz ismi</strong><span>Kompaniya nomi</span></figcaption>
+          </figure>
+          <figure class="card review">
+            <div class="icon quote" aria-hidden="true">&ldquo;</div>
+            <blockquote><p>Ikkinchi mijoz sharhi: ish jarayoni, muddat va muloqot haqida bir-ikki gap.</p></blockquote>
+            <figcaption><strong>Mijoz ismi</strong><span>Kompaniya nomi</span></figcaption>
+          </figure>
+          <figure class="card review">
+            <div class="icon quote" aria-hidden="true">&ldquo;</div>
+            <blockquote><p>Uchinchi mijoz sharhi: loyiha biznesga qanday foyda bergani haqida qisqa fikr.</p></blockquote>
+            <figcaption><strong>Mijoz ismi</strong><span>Kompaniya nomi</span></figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <!-- SAVOL-JAVOB -->
+      <section id="savollar" class="section container">
+        <div class="section-head">
+          <span class="pill">Savollar</span>
+          <h2 class="title">Ko'p beriladigan <span class="hl">savollar</span></h2>
+        </div>
+        <!-- Javoblarni o'z ish shartlaringizga moslang -->
+        <div class="faq">
+          <details class="faq-item">
+            <summary>Sayt yoki bot narxi qancha turadi?</summary>
+            <p>Narx loyiha hajmi va kerakli imkoniyatlarga bog'liq. Vazifani gaplashib olgach, aniq narxni ish boshlanishidan oldin aytaman.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Ish qancha vaqt oladi?</summary>
+            <p>Muddat loyihaning murakkabligiga qarab belgilanadi. Ishni boshlashdan oldin aniq muddatni birga kelishib olamiz.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Ishni qanday boshlaymiz?</summary>
+            <p>Telefon yoki Telegram orqali yozasiz va vazifani muhokama qilamiz. Reja va narxni kelishib olgach, ishni boshlayman.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Ishdan keyin yordam berasizmi?</summary>
+            <p>Ha, ish topshirilgandan keyin ham savollaringizga javob beraman va kerak bo'lsa o'zgartirish kiritaman. Shartlarini oldindan kelishib olamiz.</p>
+          </details>
         </div>
       </section>
 

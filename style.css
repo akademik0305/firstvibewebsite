@@ -99,7 +99,7 @@ ul { list-style: none; }
   transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
 }
 .btn:hover { transform: translateY(-2px); }
-.btn:focus-visible, .arrow:focus-visible, .theme-toggle:focus-visible, .link-arrow:focus-visible {
+.btn:focus-visible, .arrow:focus-visible, .theme-toggle:focus-visible, .menu-toggle:focus-visible, .link-arrow:focus-visible {
   outline: 3px solid var(--lime-dark);
   outline-offset: 3px;
 }
@@ -139,17 +139,30 @@ ul { list-style: none; }
 .link-arrow svg { width: 18px; height: 18px; transition: transform 0.2s ease; }
 .link-arrow:hover svg { transform: translate(3px, -3px); }
 
-/* ===== NAV ===== */
+/* ===== NAV (yopishqoq) ===== */
+.nav-bar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  border-bottom: 1px solid transparent;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+/* Scroll boshlanganda yoki telefon menyusi ochilganda fon paydo bo'ladi */
+.nav-bar.scrolled, .nav-bar.menu-open {
+  background: var(--bg);
+  border-bottom-color: var(--border);
+}
 .nav {
-  position: relative;
-  z-index: 2;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 24px;
-  padding-top: 26px;
-  padding-bottom: 26px;
+  padding-top: 16px;
+  padding-bottom: 16px;
 }
+/* Menyuga bosilganda bo'lim sarlavhasi menyu tagida qolmasin */
+#skills { scroll-margin-top: 100px; }
+.section { scroll-margin-top: 0; }
 .logo {
   font-family: var(--display);
   font-size: 24px;
@@ -170,7 +183,7 @@ ul { list-style: none; }
 }
 .nav-links a:hover { opacity: 1; text-decoration: underline; text-decoration-color: var(--lime-dark); text-underline-offset: 6px; text-decoration-thickness: 2px; }
 .nav-right { display: flex; align-items: center; gap: 14px; }
-.theme-toggle {
+.theme-toggle, .menu-toggle {
   width: 46px;
   height: 46px;
   border-radius: 50%;
@@ -187,6 +200,14 @@ ul { list-style: none; }
 .theme-toggle .sun { display: none; }
 :root[data-theme="dark"] .theme-toggle .sun { display: block; }
 :root[data-theme="dark"] .theme-toggle .moon { display: none; }
+
+/* Telefon menyusi tugmasi (faqat tor ekranda ko'rinadi) */
+.menu-toggle { display: none; }
+.menu-toggle:hover { border-color: var(--text); }
+.menu-toggle svg { width: 22px; height: 22px; }
+.menu-toggle .ico-close { display: none; }
+.nav-bar.menu-open .menu-toggle .ico-open { display: none; }
+.nav-bar.menu-open .menu-toggle .ico-close { display: block; }
 
 /* ===== HERO ===== */
 .hero {
@@ -387,7 +408,7 @@ ul { list-style: none; }
 }
 .icon svg { width: 26px; height: 26px; }
 
-/* Loyihalar */
+/* Ishlarim */
 .project { overflow: hidden; display: flex; flex-direction: column; }
 .project-cover {
   height: 170px;
@@ -408,9 +429,72 @@ ul { list-style: none; }
   border-radius: 14px;
   transform: rotate(-4deg);
 }
-.project-body { padding: 26px 26px 28px; display: flex; flex-direction: column; flex: 1; }
-.project .chips { margin: 18px 0 22px; }
-.project .link-arrow { margin-top: auto; }
+/* Haqiqiy rasm qo'yilganda u muqovani to'liq egallaydi */
+.project-cover img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.project-body { padding: 26px 26px 28px; }
+
+/* Mijozlar fikri */
+.review { padding: 30px; display: flex; flex-direction: column; }
+.quote {
+  font-family: var(--display);
+  font-size: 40px;
+  font-weight: 800;
+  line-height: 1;
+  padding-top: 16px;
+  margin-bottom: 22px;
+}
+.review blockquote p { color: var(--text); font-size: 16px; }
+.review figcaption {
+  margin-top: auto;
+  padding-top: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.review figcaption strong { font-weight: 700; }
+.review figcaption span { color: var(--muted); font-size: 14px; }
+
+/* Savol-javob */
+.faq { display: grid; gap: 14px; max-width: 860px; }
+.faq-item {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  transition: border-color 0.2s ease;
+}
+.faq-item[open], .faq-item:hover { border-color: var(--text); }
+.faq-item summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  padding: 22px 26px;
+  font-family: var(--display);
+  font-size: 17px;
+  font-weight: 700;
+  line-height: 1.35;
+  list-style: none;
+  cursor: pointer;
+}
+.faq-item summary::-webkit-details-marker { display: none; }
+/* O'ngdagi lime "+" / "−" belgisi */
+.faq-item summary::after {
+  content: "+";
+  flex-shrink: 0;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: var(--lime);
+  color: #0a0a0a;
+  font-family: 'Inter', sans-serif;
+  font-size: 22px;
+  font-weight: 500;
+}
+.faq-item[open] summary::after { content: "\2212"; }
+.faq-item summary:focus-visible { outline: 3px solid var(--lime-dark); outline-offset: 3px; border-radius: 20px; }
+.faq-item p { padding: 0 26px 24px; color: var(--muted); font-size: 15px; line-height: 1.6; }
 
 /* ===== ALOQA (lime panel) ===== */
 .contact-panel {
@@ -453,6 +537,26 @@ ul { list-style: none; }
 /* ===== MOSLASHUV ===== */
 @media (max-width: 1024px) {
   .nav-links { display: none; }
+  .menu-toggle { display: grid; }
+  /* Ochilgan telefon menyusi: menyu tagida to'liq kenglikdagi ro'yxat */
+  .nav-bar.menu-open .nav-links {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
+    padding: 4px 24px 12px;
+  }
+  .nav-bar.menu-open .nav-links a {
+    padding: 14px 0;
+    font-size: 16px;
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-bar.menu-open .nav-links a:last-child { border-bottom: 0; }
   .skills-track { grid-auto-columns: calc((100% - 20px) / 2); }
   .skills-panel { padding: 56px 36px 40px; }
 }
@@ -468,7 +572,10 @@ ul { list-style: none; }
 }
 @media (max-width: 600px) {
   .container { padding-left: 16px; padding-right: 16px; }
-  .nav { padding-top: 18px; padding-bottom: 18px; }
+  .nav { padding-top: 12px; padding-bottom: 12px; }
+  .nav-bar.menu-open .nav-links { padding-left: 16px; padding-right: 16px; }
+  #skills { scroll-margin-top: 86px; }
+  .section { scroll-margin-top: 16px; }
   .nav .btn-lime { display: none; }
   .logo { font-size: 20px; }
   .skills-panel { padding: 40px 20px 24px; border-radius: 24px; }
@@ -477,10 +584,12 @@ ul { list-style: none; }
   .grid { grid-template-columns: 1fr; }
   .section { padding-top: 80px; }
   .contact-panel { padding: 52px 20px; border-radius: 24px; }
+  .faq-item summary { padding: 18px 20px; font-size: 15px; }
+  .faq-item p { padding: 0 20px 20px; }
   .footer { justify-content: center; text-align: center; }
 }
 @media (prefers-reduced-motion: reduce) {
   html, .skills-track { scroll-behavior: auto; }
   .hero-image img { animation: none; }
-  .btn, .card, .theme-toggle, .link-arrow svg { transition: none; }
+  .btn, .card, .theme-toggle, .link-arrow svg, .nav-bar, .faq-item { transition: none; }
 }

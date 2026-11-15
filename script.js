@@ -16,6 +16,31 @@
       try { localStorage.setItem('theme', next); } catch (e) {}
     });
 
+    // Yopishqoq menyu: scroll boshlanganda fon paydo bo'ladi
+    var bar = document.getElementById('nav-bar');
+    var menuBtn = document.getElementById('menu-toggle');
+    function onScroll() { bar.classList.toggle('scrolled', window.scrollY > 8); }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('load', onScroll); // brauzer scroll joyini tiklagandan keyin
+    onScroll();
+
+    // Telefon menyusi: ochish / yopish
+    function setMenu(open) {
+      bar.classList.toggle('menu-open', open);
+      menuBtn.setAttribute('aria-expanded', open);
+      menuBtn.setAttribute('aria-label', open ? 'Menyuni yopish' : 'Menyuni ochish');
+    }
+    menuBtn.addEventListener('click', function () {
+      setMenu(!bar.classList.contains('menu-open'));
+    });
+    // Havola tanlanganda yoki Esc bosilganda menyu yopiladi
+    document.getElementById('nav-links').addEventListener('click', function (e) {
+      if (e.target.closest('a')) setMenu(false);
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') setMenu(false);
+    });
+
     // Ko'nikmalar slayderi (strelkalar)
     var track = document.getElementById('skills-track');
     var prev = document.getElementById('skills-prev');
