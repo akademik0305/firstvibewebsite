@@ -455,7 +455,7 @@ ul { list-style: none; }
 .review figcaption span { color: var(--muted); font-size: 14px; }
 
 /* Savol-javob */
-.faq { display: grid; gap: 14px; max-width: 860px; }
+.faq { display: grid; gap: 14px; }
 .faq-item {
   background: var(--surface);
   border: 1px solid var(--border);
