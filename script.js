@@ -41,6 +41,28 @@
       if (e.key === 'Escape') setMenu(false);
     });
 
+    // Scroll'da bo'limlar yumshoq paydo bo'ladi (har element bir marta)
+    if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            io.unobserve(entry.target);
+          }
+        });
+      }, { rootMargin: '0px 0px -8% 0px' });
+
+      document.querySelectorAll('.section-head, .skills-panel, .grid > *, .faq-item, .contact-panel').forEach(function (el) {
+        // Bir qatordagi kartalar ketma-ket chiqadi
+        if (el.matches('.grid > *, .faq-item')) {
+          var i = Array.prototype.indexOf.call(el.parentNode.children, el);
+          el.style.setProperty('--reveal-delay', (i * 0.06) + 's');
+        }
+        el.classList.add('reveal');
+        io.observe(el);
+      });
+    }
+
     // Ko'nikmalar slayderi (strelkalar)
     var track = document.getElementById('skills-track');
     var prev = document.getElementById('skills-prev');

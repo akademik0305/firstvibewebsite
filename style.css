@@ -328,6 +328,9 @@ ul { list-style: none; }
   scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
   scrollbar-width: none;
+  /* Hover'da ko'tarilgan karta tepasi kesilmasin */
+  padding-top: 6px;
+  margin-top: -6px;
 }
 .skills-track::-webkit-scrollbar { display: none; }
 .skill-card {
@@ -338,6 +341,7 @@ ul { list-style: none; }
   min-height: 300px;
   display: flex;
   flex-direction: column;
+  transition: transform 0.2s ease;
 }
 .num {
   align-self: flex-start;
@@ -382,9 +386,13 @@ ul { list-style: none; }
   border: 1px solid var(--border);
   border-radius: 24px;
   box-shadow: 0 10px 30px var(--shadow);
-  transition: transform 0.25s ease, border-color 0.25s ease;
+  transition: transform 0.2s ease, border-color 0.2s ease;
 }
-.card:hover { transform: translateY(-6px); border-color: var(--text); }
+.card:hover { border-color: var(--text); }
+/* Sichqoncha kelganda karta biroz ko'tariladi (telefonda emas) */
+@media (hover: hover) {
+  .card:hover, .skill-card:hover { transform: translateY(-4px); }
+}
 .card h3 {
   font-family: var(--display);
   font-size: 19px;
@@ -588,8 +596,34 @@ ul { list-style: none; }
   .faq-item p { padding: 0 20px 20px; }
   .footer { justify-content: center; text-align: center; }
 }
+/* ===== JONLANISH (yengil va tez) ===== */
+@keyframes rise {
+  from { opacity: 0; translate: 0 16px; }
+}
+/* Faqat "animatsiyani kamaytirish" yoqilmagan qurilmalarda */
+@media (prefers-reduced-motion: no-preference) {
+  /* Sahifa ochilganda: avval sarlavha, keyin matn va tugmalar */
+  .hero-title { animation: rise 0.5s ease-out backwards; }
+  .hero-bottom { animation: rise 0.5s ease-out 0.1s backwards; }
+
+  /* Scroll'da pastdan ko'tarilib chiqish. .reveal klassini script.js qo'yadi,
+     JS ishlamasa hamma narsa odatdagidek ko'rinadi */
+  .reveal:not(.is-visible) { opacity: 0; }
+  .reveal.is-visible { animation: rise 0.4s ease-out var(--reveal-delay, 0s) backwards; }
+
+  /* Savol-javob: javob yumshoq ochiladi/yopiladi (yangi brauzerlarda) */
+  .faq-item { interpolate-size: allow-keywords; }
+  .faq-item::details-content {
+    block-size: 0;
+    overflow: hidden;
+    transition: block-size 0.25s ease, content-visibility 0.25s allow-discrete;
+  }
+  .faq-item[open]::details-content { block-size: auto; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html, .skills-track { scroll-behavior: auto; }
   .hero-image img { animation: none; }
-  .btn, .card, .theme-toggle, .link-arrow svg, .nav-bar, .faq-item { transition: none; }
+  .btn, .card, .skill-card, .theme-toggle, .link-arrow svg, .nav-bar, .faq-item { transition: none; }
+  .card:hover, .skill-card:hover { transform: none; }
 }
