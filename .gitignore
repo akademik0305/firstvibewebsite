@@ -1,0 +1,19 @@
+# Maxfiy sozlamalar
+.env
+.env.*
+
+# Claude shaxsiy sozlamalari
+.claude/settings.local.json
+
+# Tizim fayllari
+.DS_Store
+Thumbs.db
+*.swp
+*~
+
+# Muharrir papkalari
+.vscode/
+.idea/
+
+# Loglar
+*.log
