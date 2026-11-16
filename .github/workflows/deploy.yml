@@ -1,0 +1,64 @@
+# onecoder.uz — main'ga push bo'lganda serverga avtomatik deploy.
+# Server tomonidagi qadamlar: /usr/local/bin/onecoder-deploy (GitHub kaliti faqat shuni ishga tushira oladi).
+# Kerakli Secrets: DEPLOY_SSH_KEY, DEPLOY_HOST, DEPLOY_KNOWN_HOSTS
+
+name: Deploy
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch: # GitHub'da "Run workflow" tugmasi orqali qo'lda ishga tushirish
+
+# Bir vaqtda faqat bitta deploy; yangi push kelsa, oldingisi tugashini kutadi
+concurrency:
+  group: production
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    name: Tekshiruv
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Sayt fayllari joyida
+        run: |
+          for f in index.html style.css script.js images/og-image.png; do
+            test -f "$f" || { echo "::error::$f topilmadi"; exit 1; }
+          done
+          echo "Hamma fayl joyida"
+
+      # Loyiha o'sganda shu yerga qo'shiladi: npm ci, lint, testlar, build
+
+  deploy:
+    name: Serverga deploy
+    needs: check
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: SSH kalitni tayyorlash
+        env:
+          SSH_KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+          KNOWN_HOSTS: ${{ secrets.DEPLOY_KNOWN_HOSTS }}
+        run: |
+          install -m 700 -d ~/.ssh
+          printf '%s\n' "$SSH_KEY" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          printf '%s\n' "$KNOWN_HOSTS" > ~/.ssh/known_hosts
+
+      - name: Deploy
+        env:
+          HOST: ${{ secrets.DEPLOY_HOST }}
+        run: |
+          ssh -i ~/.ssh/deploy_key \
+              -o BatchMode=yes \
+              -o StrictHostKeyChecking=yes \
+              -o ConnectTimeout=15 \
+              akademik0305@"$HOST"
+
+      - name: Kalitni o'chirish
+        if: always()
+        run: rm -f ~/.ssh/deploy_key

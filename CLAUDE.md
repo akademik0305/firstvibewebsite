@@ -17,7 +17,9 @@ Xizmatlar: bir sahifali saytlar, CRM va ERP tizimlar, Telegram botlar.
   (`prefers-reduced-motion`) yoqilganda hammasi o'chadi.
 
 ## Texnik chegaralar
-- Faqat 3 fayl: `index.html`, `style.css`, `script.js`. Rasmlar `images/` papkasida.
+- Sayt faqat 3 fayl: `index.html`, `style.css`, `script.js`. Rasmlar `images/` papkasida.
+  Bundan tashqari repoda faqat deploy uchun `.github/workflows/deploy.yml` bor.
+  Admin panel/backend qo'shilganda bu chegaralar alohida qayta ko'rib chiqiladi.
 - Framework, build vositasi, npm yo'q. Faqat sof HTML, CSS va JS.
 - Tashqi resurs faqat Google Fonts.
 - Telefon ekraniga mos bo'lsin: 320px va 375px kenglikda gorizontal skroll bo'lmasin.
@@ -48,8 +50,15 @@ Xizmatlar: bir sahifali saytlar, CRM va ERP tizimlar, Telegram botlar.
   ni qayta yasa. Rasm yasash uchun vaqtinchalik fayllar loyiha papkasiga yozilmaydi.
 
 ## Joylash (deploy)
-- Repo: github.com/akademik0305/firstvibewebsite (ochiq), GitHub Pages: `main` tarmog'i.
-- Sayt: https://akademik0305.github.io/firstvibewebsite/ — push'dan keyin 1–2 daqiqada yangilanadi.
+- Repo: github.com/akademik0305/firstvibewebsite (ochiq).
+- Asosiy joy: o'z VPS (DigitalOcean, Ubuntu 24.04, Nginx), domen **onecoder.uz** Cloudflare orqali.
+  Server IP'sini repoga yozma — u Cloudflare ortida yashirin turishi kerak.
+- `main` ga push → GitHub Actions (`.github/workflows/deploy.yml`): `check` → `deploy`.
+  Deploy SSH orqali serverdagi `/usr/local/bin/onecoder-deploy` ni ishga tushiradi
+  (GitHub kaliti faqat shu buyruqqa cheklangan). Build/migratsiya kabi yangi qadamlar shu skriptga qo'shiladi.
+  Secrets: `DEPLOY_SSH_KEY`, `DEPLOY_HOST`, `DEPLOY_KNOWN_HOSTS`.
+- GitHub Pages (https://akademik0305.github.io/firstvibewebsite/) hozircha ham ishlaydi — onecoder.uz
+  faollashgach o'chiriladi yoki yo'naltiriladi.
 - Push faqat foydalanuvchi aytganda.
 - Sayt manzili `<head>` dagi `og:url`, `og:image` va `canonical` da to'liq yozilgan —
   domen o'zgarsa, ularni ham almashtir.
