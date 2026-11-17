@@ -40,12 +40,13 @@ Xizmatlar: bir sahifali saytlar, CRM va ERP tizimlar, Telegram botlar.
 - **Mijozlar fikri** `index.html` da izohga olingan. Faqat haqiqiy sharhlar
   (mijoz roziligi bilan) bo'lganda qaytariladi. To'qima sharh yozma.
 - **Ishlarim** — 4 ta haqiqiy loyiha (Azizbek o'zi qilgan), havolalari bilan. Mijoz nomlari
-  sarlavhada yozilmaydi, faqat turi. Muqovalarda hozircha rasm yo'q — skrinshot qo'shish mumkin.
+  sarlavhada yozilmaydi, faqat turi.
 - **Savol-javob** javoblarida aniq narx va muddat yo'q — ularni Azizbek o'zi belgilaydi.
 
 ## Rasmlar (`images/`)
 - `hero.svg` — bosh rasm.
 - `favicon.svg`, `favicon-32.png`, `apple-touch-icon.png` — qora fonda lime "A".
+- `project-*.webp` — Ishlarim kartalaridagi sayt skrinshotlari, 800×450 (16:9), WebP.
 - `og-image.png` — havola kartasi rasmi, 1200×630 PNG (Telegram SVG'ni ko'rsatmaydi).
 - Logo, sarlavha yoki aloqa ma'lumoti o'zgarsa, favicon PNG'lari va `og-image.png`
   ni qayta yasa. Rasm yasash uchun vaqtinchalik fayllar loyiha papkasiga yozilmaydi.

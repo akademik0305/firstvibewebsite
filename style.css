@@ -442,6 +442,27 @@ ul { list-style: none; }
 }
 /* Haqiqiy rasm qo'yilganda u muqovani to'liq egallaydi */
 .project-cover img { width: 100%; height: 100%; object-fit: cover; display: block; }
+/* Skrinshotli muqova: 16:9, saytning yuqori qismi ko'rinadi */
+.project-shot {
+  height: auto;
+  aspect-ratio: 16 / 9;
+  background: var(--surface-2);
+  border-bottom: 1px solid var(--border);
+}
+.project-shot img { object-position: top; }
+/* Loyiha turi: sarlavha ustidagi kichik yorliq */
+.project-tag {
+  align-self: flex-start;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: var(--lime);
+  color: #0a0a0a;
+  margin-bottom: 12px;
+}
 .project-body { padding: 26px 26px 22px; display: flex; flex-direction: column; flex: 1; }
 /* "Saytni ko'rish" havolasi karta pastida; bosish joyi 44px */
 .project-link { margin-top: auto; padding-top: 14px; min-height: 44px; align-self: flex-start; }
