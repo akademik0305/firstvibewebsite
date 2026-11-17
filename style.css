@@ -382,6 +382,8 @@ ul { list-style: none; }
   grid-template-columns: repeat(3, 1fr);
   gap: 22px;
 }
+/* 4 ta karta uchun: kompyuterda 2×2 */
+.grid-2 { grid-template-columns: repeat(2, 1fr); }
 .card {
   background: var(--surface);
   border: 1px solid var(--border);
@@ -440,7 +442,9 @@ ul { list-style: none; }
 }
 /* Haqiqiy rasm qo'yilganda u muqovani to'liq egallaydi */
 .project-cover img { width: 100%; height: 100%; object-fit: cover; display: block; }
-.project-body { padding: 26px 26px 28px; }
+.project-body { padding: 26px 26px 22px; display: flex; flex-direction: column; flex: 1; }
+/* "Saytni ko'rish" havolasi karta pastida; bosish joyi 44px */
+.project-link { margin-top: auto; padding-top: 14px; min-height: 44px; align-self: flex-start; }
 
 /* Mijozlar fikri */
 .review { padding: 30px; display: flex; flex-direction: column; }

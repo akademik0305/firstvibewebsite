@@ -39,7 +39,8 @@ Xizmatlar: bir sahifali saytlar, CRM va ERP tizimlar, Telegram botlar.
 ## Ochiq ishlar
 - **Mijozlar fikri** `index.html` da izohga olingan. Faqat haqiqiy sharhlar
   (mijoz roziligi bilan) bo'lganda qaytariladi. To'qima sharh yozma.
-- **Ishlarim** kartalaridagi 3 ta loyiha namunaviy — haqiqiylari bilan almashtirilishi kerak.
+- **Ishlarim** — 4 ta haqiqiy loyiha (Azizbek o'zi qilgan), havolalari bilan. Mijoz nomlari
+  sarlavhada yozilmaydi, faqat turi. Muqovalarda hozircha rasm yo'q — skrinshot qo'shish mumkin.
 - **Savol-javob** javoblarida aniq narx va muddat yo'q — ularni Azizbek o'zi belgilaydi.
 
 ## Rasmlar (`images/`)
