@@ -51,14 +51,18 @@ Xizmatlar: bir sahifali saytlar, CRM va ERP tizimlar, Telegram botlar.
 
 ## Joylash (deploy)
 - Repo: github.com/akademik0305/firstvibewebsite (ochiq).
-- Asosiy joy: o'z VPS (DigitalOcean, Ubuntu 24.04, Nginx), domen **onecoder.uz** Cloudflare orqali.
+- Sayt: **https://onecoder.uz** — o'z VPS (DigitalOcean, Ubuntu 24.04, Nginx), Cloudflare proxy orqali.
   Server IP'sini repoga yozma — u Cloudflare ortida yashirin turishi kerak.
+- HTTPS: Cloudflare Origin Certificate, rejim Full (strict), Always Use HTTPS yoqilgan.
+  Firewall 80/443 ni faqat Cloudflare IP'lariga ochadi (ro'yxat serverda oyiga bir marta avtomatik yangilanadi).
+- Nginx faqat oq ro'yxatdagi fayllarni beradi (`index.html`, `style.css`, `script.js`, `images/`).
+  Yangi fayl yoki papka qo'shilsa, serverdagi Nginx sozlamasiga ham qo'shish kerak.
 - `main` ga push → GitHub Actions (`.github/workflows/deploy.yml`): `check` → `deploy`.
   Deploy SSH orqali serverdagi `/usr/local/bin/onecoder-deploy` ni ishga tushiradi
   (GitHub kaliti faqat shu buyruqqa cheklangan). Build/migratsiya kabi yangi qadamlar shu skriptga qo'shiladi.
   Secrets: `DEPLOY_SSH_KEY`, `DEPLOY_HOST`, `DEPLOY_KNOWN_HOSTS`.
-- GitHub Pages (https://akademik0305.github.io/firstvibewebsite/) hozircha ham ishlaydi — onecoder.uz
-  faollashgach o'chiriladi yoki yo'naltiriladi.
+- GitHub Pages (https://akademik0305.github.io/firstvibewebsite/) hozircha ham ishlaydi —
+  o'chiriladi yoki onecoder.uz ga yo'naltiriladi.
 - Push faqat foydalanuvchi aytganda.
 - Sayt manzili `<head>` dagi `og:url`, `og:image` va `canonical` da to'liq yozilgan —
   domen o'zgarsa, ularni ham almashtir.
